@@ -139,9 +139,18 @@ form #content{width: 95%; height: 70%;}
 }
 
 .sub_input{
-	background: url( "../images/btn_a_save.gif" ) no-repeat;
+	background: url( "../images/btn_change_on.gif" ) no-repeat;
      border: none;
-     width: 60px;
+     width: 68px;
+     height: 32px;
+     cursor: pointer;
+     margin-top: 20px;
+}
+
+.del_input{
+	background: url( "../images/btn_delete.gif" ) no-repeat;
+     border: none;
+     width: 68px;
      height: 32px;
      cursor: pointer;
      margin-top: 20px;

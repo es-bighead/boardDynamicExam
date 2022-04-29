@@ -15,5 +15,11 @@ public interface BoardService {
 
 	//게시글 상세정보
 	BoardVO selectBoardByBoardNo(String board_no) throws SQLException;
+
+	//게시글 수정
+	void updateModifyBoard(BoardVO board) throws SQLException;
+
+	//게시글 삭제
+	void deleteBoard(String board_no) throws SQLException;
 	
 }

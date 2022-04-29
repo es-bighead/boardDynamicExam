@@ -13,6 +13,7 @@
 			,MOD_DT
 			,DEL_YN 
 		FROM BOARD
+			WHERE DEL_YN = 'N'
   	</select>
   	
   	<insert id="insertBoard" parameterType="board">
@@ -33,5 +34,20 @@
 		FROM BOARD
 			WHERE BOARD_NO = #{board_no}
   	</select>
+  	
+  	<update id="updateModifyBoard" parameterType="board">
+  		UPDATE BOARD
+  			SET TITLE = #{title}
+  				,CONTENT = #{content}
+  				,MOD_DT = SYSDATE
+  		WHERE BOARD_NO = #{board_no}
+  	</update>
+  	
+  	<update id="deleteBoard" parameterType="str">
+  		UPDATE BOARD
+  			SET MOD_DT = SYSDATE
+  				,DEL_YN = 'Y'
+  		WHERE BOARD_NO = #{board_no}
+  	</update>
   	
 </mapper>

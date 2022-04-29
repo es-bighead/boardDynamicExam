@@ -44,4 +44,16 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.selectBoardByBoardNo(board_no);
 	}
 
+
+	@Override
+	public void updateModifyBoard(BoardVO board) throws SQLException {
+		boardDao.updateModifyBoard(board);
+	}
+
+
+	@Override
+	public void deleteBoard(String board_no) throws SQLException {
+		boardDao.deleteBoard(board_no);
+	}
+
 }

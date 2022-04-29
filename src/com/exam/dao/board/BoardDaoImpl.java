@@ -63,4 +63,40 @@ public class BoardDaoImpl implements BoardDao{
 		return board;
 	}
 
+	@Override
+	public void updateModifyBoard(BoardVO board) throws SQLException {
+		sqlSession = sqlFactory.openSession();
+		try{
+			int updateChk = sqlSession.update("Board-Mapper.updateModifyBoard", board);
+			
+			if(updateChk > 0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	@Override
+	public void deleteBoard(String board_no) throws SQLException {
+		sqlSession = sqlFactory.openSession();
+		try{
+			
+			int deleteChk = sqlSession.update("Board-Mapper.deleteBoard", board_no);
+			
+			if(deleteChk > 0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+			
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
 }
