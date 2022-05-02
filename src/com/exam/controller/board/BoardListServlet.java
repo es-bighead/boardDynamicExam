@@ -49,6 +49,12 @@ public class BoardListServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			String chk = request.getParameter("chk");
+			
+			if(chk != null){
+				request.setAttribute("msg", "게시글 등록이 완료되었습니다.");
+			}
+			
 			request.setAttribute("boardList", boardList);			
 		}
 		

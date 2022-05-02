@@ -39,4 +39,31 @@ public class CommonsDAOImpl implements CommonsDAO {
 		return member;
 	}
 
+	@Override
+	public int idDuplicateCheck(String id) throws SQLException {
+		sqlSession = sqlSessionFactory.openSession();
+		int idCnt = sqlSession.selectOne("Commons-Mapper.idDuplicateCheck", id);
+		sqlSession.close();
+		return idCnt;
+	}
+
+	@Override
+	public void insertMember(MemberVO member) throws SQLException {
+		sqlSession = sqlSessionFactory.openSession();
+		
+		try{
+			int insertChk = sqlSession.update("Commons-Mapper.insertMember", member);
+			
+			if(insertChk > 0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+			
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
 }

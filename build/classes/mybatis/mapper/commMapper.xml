@@ -2,10 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper" "mybatis-3-mapper.dtd" >
 <mapper namespace="Commons-Mapper">
 
-	<select id="loginCheck" parameterType="String" resultType="member">
-		select *
-		from member
-		where lgin_id = #{lgin_id}
+	<select id="loginCheck" parameterType="str" resultType="member">
+		SELECT
+			MEM_NO
+			,LGIN_ID
+			,PWD
+			,NAME
+			,CEL
+			,EMAIL
+			,ADDR
+			,REG_DT
+			,SEC_DT
+		FROM MEMBER
+			WHERE LGIN_ID = #{lgin_id}
 	</select>
+	
+	<select id="idDuplicateCheck" parameterType="str" resultType="int">
+		SELECT COUNT(LGIN_ID)
+			FROM MEMBER
+		WHERE LGIN_ID = #{lgin_id}
+	</select>
+	
+	<update id="insertMember" parameterType="member">
+		INSERT INTO MEMBER(MEM_NO, LGIN_ID, PWD, NAME, CEL, EMAIL, ADDR)
+		VALUES((SELECT NVL(MAX(MEM_NO)+1, 0) FROM MEMBER), #{lgin_id}, #{pwd}, #{name}, #{cel}, #{email}, #{addr})
+	</update>
   
 </mapper>

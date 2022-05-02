@@ -33,25 +33,16 @@ public class BoardRegistServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "board/boardList";
+		String url = "redirect:/boardList.do?chk=y";
 		
 		BoardVO board = new BoardVO();
 		board.setMem_no(request.getParameter("mem_no"));
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 		
-		List<BoardVO> boardList = null;
-		
 		try {
 			boardService.insertBoard(board);
-			
-			boardList = boardService.selectBoardList();
-			
-			request.setAttribute("boardList", boardList);
-			
-			request.setAttribute("msg", "게시글 등록이 완료되었습니다.");
 		} catch (SQLException e) {
-			request.setAttribute("msg", "게시글 등록 중 오류가 발생하였습니다.");
 			e.printStackTrace();
 		}
 		

@@ -30,7 +30,7 @@ public class BoardModifyServlet extends HttpServlet {
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "board/boardList";
+		String url = "redirect:/boardList.do?chk=y";
 		
 		BoardVO board = new BoardVO();
 		
@@ -38,18 +38,10 @@ public class BoardModifyServlet extends HttpServlet {
 		board.setContent(request.getParameter("content"));
 		board.setBoard_no(request.getParameter("board_no"));
 		
-		List<BoardVO> boardList = null;
-		
 		try {
 			boardService.updateModifyBoard(board);
-			boardList = boardService.selectBoardList();
-			
-			request.setAttribute("boardList", boardList);
-			
-			request.setAttribute("msg", "게시글 수정이 완료되었습니다.");			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "게시글 수정에 실패하였습니다!!!");
 		}
 		
 		ViewResolver.view(request, response, url);

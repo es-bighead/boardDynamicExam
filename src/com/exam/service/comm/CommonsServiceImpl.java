@@ -33,4 +33,16 @@ public class CommonsServiceImpl implements CommonsService {
 		return member;
 	}
 
+
+	@Override
+	public int idDuplicateCheck(String id) throws SQLException {
+		return commonsDao.idDuplicateCheck(id);
+	}
+
+
+	@Override
+	public void insertMember(MemberVO member) throws SQLException {
+		commonsDao.insertMember(member);
+	}
+
 }

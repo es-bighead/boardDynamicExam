@@ -30,6 +30,13 @@ public class LoginServlet extends HttpServlet {
 	//로그인페이지
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "login/login";
+		
+		String chk = request.getParameter("chk");
+		
+		if(chk != null){
+			request.setAttribute("msg", "회원가입을 축하드립니다.");
+		}
+		
 		ViewResolver.view(request, response, url);
 	}
 

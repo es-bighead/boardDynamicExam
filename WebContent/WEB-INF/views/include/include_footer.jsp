@@ -11,4 +11,14 @@
 </script>
 
 <% request.removeAttribute("msg"); %>
+
+<script type="text/javascript">
+
+	if(location.search.indexOf("chk=y") > 0){
+		window.onload = function(){
+			history.replaceState({}, null, location.pathname);
+		}		
+	}
+	
+</script>
 </html>
