@@ -86,25 +86,8 @@ section { background-size: cover; background-repeat: no-repeat; background-posit
 	.modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background-color: rgba(0, 0, 0, 0.4); } 
 	.modal.show { display: block; } 
 	.modal_body { position: absolute; top: 50%; left: 50%; width: 90%; height: 600px; padding: 40px; text-align: center; background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15); transform: translateX(-50%) translateY(-50%); }
-}
-
-@media screen and (min-width: 451px) {
-	.inner .loginBox{ z-index: 500; width: 450px; padding: 50px; background: #fff; border-radius: 5px; text-align: center; }
-	.inner .loginBox input{ width: 100%; height: 50px; border: 1px solid #bbb; margin-bottom: 20px;}
-	.inner .loginBox label{ width: 100%; }
-	.inner .signBox{ z-index: 500; width: 450px; padding: 50px; background: #fff; border-radius: 5px; text-align: center; }
-	.modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background-color: rgba(0, 0, 0, 0.4); } 
-	.modal.show { display: block; } 
-	.modal_body { position: absolute; top: 50%; left: 50%; width: 400px; height: 600px; padding: 40px; text-align: center; background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15); transform: translateX(-50%) translateY(-50%); }
-}
-
-#boardForm{height: 100%;}
-#boardForm fieldset{height: 90%; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;}
-form #title{width: 95%; height: 35px;}
-form #content{width: 95%; height: 70%;}
-
-@media screen and (max-width: 450px) {
-		.sign_table{
+	
+	.sign_table{
 		width: 100%;
 	    display: flex;
 	    flex-direction: row;
@@ -127,10 +110,17 @@ form #content{width: 95%; height: 70%;}
 	.sign_table tbody td{
 		float: left;
 	}
-	
 }
 
-@meida screen and(min-width:451px){
+@media screen and (min-width: 451px) {
+	.inner .loginBox{ z-index: 500; width: 450px; padding: 50px; background: #fff; border-radius: 5px; text-align: center; }
+	.inner .loginBox input{ width: 100%; height: 50px; border: 1px solid #bbb; margin-bottom: 20px;}
+	.inner .loginBox label{ width: 100%; }
+	.inner .signBox{ z-index: 500; width: 450px; padding: 50px; background: #fff; border-radius: 5px; text-align: center; }
+	.modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background-color: rgba(0, 0, 0, 0.4); } 
+	.modal.show { display: block; } 
+	.modal_body { position: absolute; top: 50%; left: 50%; width: 400px; height: 600px; padding: 40px; text-align: center; background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15); transform: translateX(-50%) translateY(-50%); }
+	
 	.sign_table{
 		width: 100%;
 	    display: flex;
@@ -150,6 +140,11 @@ form #content{width: 95%; height: 70%;}
 		float: left;
 	}
 }
+
+#boardForm{height: 100%;}
+#boardForm fieldset{height: 90%; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;}
+form #title{width: 95%; height: 35px;}
+form #content{width: 95%; height: 70%;}
 
 .section1 h2{
 	margin-bottom: 100px;
