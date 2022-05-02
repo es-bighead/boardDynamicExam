@@ -30,22 +30,13 @@ public class BoardDeleteServlet extends HttpServlet {
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "board/boardList";
+		String url = "redirect:/boardList.do?chk=y";
 		
 		String board_no = request.getParameter("board_no");
 
-		List<BoardVO> boardList = null;
-		
 		try {
 			boardService.deleteBoard(board_no);
-			
-			boardList = boardService.selectBoardList();
-			
-			request.setAttribute("boardList", boardList);
-			
-			request.setAttribute("msg", "게시글 삭제가 완료되었습니다.");
 		} catch (SQLException e) {
-			request.setAttribute("msg", "게시글 삭제가 실패하였습니다!!!");
 			e.printStackTrace();
 		}
 		

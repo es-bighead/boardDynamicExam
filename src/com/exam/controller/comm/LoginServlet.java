@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			MemberVO loginUser = (MemberVO) comService.loginCheck(memberVO);
 			session.setAttribute("loginUser", loginUser);
-			session.setMaxInactiveInterval(60 * 10);
+			session.setMaxInactiveInterval(6 * 5);
 		}catch (LoginCheckException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", e.getMessage());
