@@ -205,6 +205,13 @@ const idchk = document.querySelector('#idChk');
 idchk.addEventListener('click', function(event){
 	/* textBox에 작성된 id 데이터를 가져옴 */
 	var id = document.getElementById("id").value;
+	//아이디가 입력되어 있지 않으면 비동기 X
+	if(id == ""){
+		alert("아이디를 입력하여 주세요.");
+		document.getElementById("id").focus;
+		return false;
+	}
+	
 	/* 통신에 사용 될 XMLHttpRequest 객체 정의 */
 	httpRequest = new XMLHttpRequest();
 	/* httpRequest의 readyState가 변화했을때 함수 실행 */
