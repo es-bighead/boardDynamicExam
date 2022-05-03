@@ -13,6 +13,7 @@
 			,ADDR
 			,REG_DT
 			,SEC_DT
+			,PICTURE
 		FROM MEMBER
 			WHERE LGIN_ID = #{lgin_id}
 	</select>
@@ -24,8 +25,8 @@
 	</select>
 	
 	<update id="insertMember" parameterType="member">
-		INSERT INTO MEMBER(MEM_NO, LGIN_ID, PWD, NAME, CEL, EMAIL, ADDR)
-		VALUES((SELECT NVL(MAX(MEM_NO)+1, 0) FROM MEMBER), #{lgin_id}, #{pwd}, #{name}, #{cel}, #{email}, #{addr})
+		INSERT INTO MEMBER(MEM_NO, LGIN_ID, PWD, NAME, CEL, EMAIL, ADDR, PICTURE)
+		VALUES((SELECT NVL(MAX(MEM_NO)+1, 0) FROM MEMBER), #{lgin_id}, #{pwd}, #{name}, #{cel}, #{email}, #{addr}, #{picture})
 	</update>
   
 </mapper>

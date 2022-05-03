@@ -114,6 +114,12 @@
 			return false;
 		}
 		
+		if(document.querySelector("input[name=checkUpload]").value == 0){
+			alert("사진을 업로드 하여 주세요.");
+			document.querySelector("input[name=pictureFile]").click();
+			return false;
+		}
+		
 		document.signForm.submit();
 		
 	}
@@ -184,6 +190,18 @@
 				        	<input type="button" value="주소검색" onclick="fn_addr();"/>
 				        </td>
 				      </tr>
+				      <tr>
+				      	<th colspan="2">
+				      		<div id="pictureView"></div>
+				      		<div>
+				      			<label for="inputFile">파일선택</label>
+								<input id="inputFileName" type="text" name="picture" />
+								<span>											
+									<button type="button" onclick="upload_go();">업로드</button>											
+								</span>
+				      		</div>
+				      	</th>
+				      </tr>
 				      <tr align="center">
 				        <th colspan="2">
 				           <button class="sig_btn" type="button" onclick="fn_submit();"></button>
@@ -193,9 +211,16 @@
 				   </table>
                 </fieldset>
             </form>
+            <form id="imageForm" role="imageForm" action="upload/picture" method="post" enctype="multipart/form-data">
+				<input id="inputFile" name="pictureFile" type="file" style="display:none;">
+				<input id="oldFile" type="hidden" name="oldPicture" value="" />
+				<input type="hidden" name="checkUpload" value="0" />
+			</form>
         </div>
     </section>
 </div>
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fileUpload.js"></script>
 
 <script type="text/javascript">
 var httpRequest;

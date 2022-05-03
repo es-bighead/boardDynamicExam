@@ -46,6 +46,7 @@ public class AcountServlet extends HttpServlet {
 		member.setEmail(request.getParameter("email"));
 		member.setAddr(request.getParameter("addr"));
 		member.setPwd(request.getParameter("pwd"));
+		member.setPicture(request.getParameter("picture"));
 		
 		try {
 			commonsService.insertMember(member);

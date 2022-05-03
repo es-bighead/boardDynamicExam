@@ -235,3 +235,5 @@ form #content{width: 95%; height: 70%;}
     background: #ffffff;
     border-top: 1px #ffffff solid;
 }
+
+div#pictureView{border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;}

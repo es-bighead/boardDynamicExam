@@ -5,6 +5,7 @@ public class BoardVO {
 	private String board_no;
 	private String mem_no;
 	private String name;
+	private String picture;
 	private String title;
 	private String content;
 	private String reg_dt;
@@ -28,6 +29,12 @@ public class BoardVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	public String getTitle() {
 		return title;
@@ -62,8 +69,9 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		return "BoardVO [board_no=" + board_no + ", mem_no=" + mem_no + ", name=" + name + ", title=" + title
-				+ ", content=" + content + ", reg_dt=" + reg_dt + ", mod_dt=" + mod_dt + ", del_yn=" + del_yn + "]";
+		return "BoardVO [board_no=" + board_no + ", mem_no=" + mem_no + ", name=" + name + ", picture=" + picture
+				+ ", title=" + title + ", content=" + content + ", reg_dt=" + reg_dt + ", mod_dt=" + mod_dt
+				+ ", del_yn=" + del_yn + "]";
 	}
 	
 }

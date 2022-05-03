@@ -2,15 +2,16 @@ package com.exam.vo.comm;
 
 public class MemberVO {
 
-	int mem_no;
-	String lgin_id;
-	String pwd;
-	String name;
-	String cel;
-	String email;
-	String addr;
-	String reg_dt;
-	String sec_dt;
+	private int mem_no;
+	private String lgin_id;
+	private String pwd;
+	private String name;
+	private String cel;
+	private String email;
+	private String addr;
+	private String reg_dt;
+	private String sec_dt;
+	private String picture;
 	
 	public int getMem_no() {
 		return mem_no;
@@ -66,11 +67,18 @@ public class MemberVO {
 	public void setSec_dt(String sec_dt) {
 		this.sec_dt = sec_dt;
 	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 	
 	@Override
 	public String toString() {
 		return "MemberVO [mem_no=" + mem_no + ", lgin_id=" + lgin_id + ", pwd=" + pwd + ", name=" + name + ", cel="
-				+ cel + ", email=" + email + ", addr=" + addr + ", reg_dt=" + reg_dt + ", sec_dt=" + sec_dt + "]";
+				+ cel + ", email=" + email + ", addr=" + addr + ", reg_dt=" + reg_dt + ", sec_dt=" + sec_dt
+				+ ", picture=" + picture + "]";
 	}
 	
 }

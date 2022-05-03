@@ -31,6 +31,14 @@
 			        	<form id="boardForm" name="boardForm" method="post">
 				      		<fieldset>
 				      		<legend>내용</legend>
+				      			<div>
+				      				<c:if test="${empty board.picture}">
+				      					<img src="<%=request.getContextPath() %>/resources/images/noImage.png" style="width: 100%; height: 150px;" />
+				      				</c:if>
+				      				<c:if test="${not empty board.picture}">
+				      					<img src="<%=request.getContextPath() %>/pictureGet.do?picture=${board.picture}" style="width: 100%; height: 150px;" />
+				      				</c:if>
+				      			</div>
 				      			<input type="hidden" name="mem_no" value="${loginUser.mem_no }">
 				      			<input type="hidden" name="board_no" value="${board.board_no }">
 					      		<input id="title" name="title" type="text" placeholder="게시글 제목 입력" value="${board.title }" <c:if test="${loginUser.mem_no ne board.mem_no }">disabled</c:if>/>

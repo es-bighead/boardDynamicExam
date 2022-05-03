@@ -21,6 +21,11 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:if test="${empty boardList }">
+					<tr>
+						<td colspan="4">글 목록이 없습니다.</td>
+					</tr>
+					</c:if>
 					<c:forEach var="items" items="${boardList }">
 					<tr>
 						<td>${items.board_no }</td>
