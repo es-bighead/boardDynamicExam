@@ -2,6 +2,8 @@ package com.exam.vo.board;
 
 public class BoardVO {
 
+	private int rownum;
+	private int totpage;
 	private String board_no;
 	private String mem_no;
 	private String name;
@@ -12,6 +14,18 @@ public class BoardVO {
 	private String mod_dt;
 	private String del_yn;
 	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+	public int getTotpage() {
+		return totpage;
+	}
+	public void setTotpage(int totpage) {
+		this.totpage = totpage;
+	}
 	public String getBoard_no() {
 		return board_no;
 	}
@@ -69,9 +83,9 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		return "BoardVO [board_no=" + board_no + ", mem_no=" + mem_no + ", name=" + name + ", picture=" + picture
-				+ ", title=" + title + ", content=" + content + ", reg_dt=" + reg_dt + ", mod_dt=" + mod_dt
-				+ ", del_yn=" + del_yn + "]";
+		return "BoardVO [rownum=" + rownum + ", totpage=" + totpage + ", board_no=" + board_no + ", mem_no=" + mem_no
+				+ ", name=" + name + ", picture=" + picture + ", title=" + title + ", content=" + content + ", reg_dt="
+				+ reg_dt + ", mod_dt=" + mod_dt + ", del_yn=" + del_yn + "]";
 	}
 	
 }

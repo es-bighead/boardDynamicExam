@@ -3,6 +3,7 @@ package com.exam.service.board;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.exam.controller.board.SearchCriteria;
 import com.exam.dao.board.BoardDao;
 import com.exam.dao.board.BoardDaoImpl;
 import com.exam.vo.board.BoardVO;
@@ -28,8 +29,8 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public List<BoardVO> selectBoardList() throws SQLException {
-		return boardDao.selectBoardList();
+	public List<BoardVO> selectBoardList(SearchCriteria cri) throws SQLException {
+		return boardDao.selectBoardList(cri);
 	}
 
 

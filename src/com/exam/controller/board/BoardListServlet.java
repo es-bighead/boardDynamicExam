@@ -2,7 +2,9 @@ package com.exam.controller.board;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,10 +43,31 @@ public class BoardListServlet extends HttpServlet {
 		if(session.getAttribute("loginUser") == null){
 			url = "redirect:login.do";
 		}else{
-			List<BoardVO> boardList = null;
+			SearchCriteria cri = new SearchCriteria();
+			try{
+				int page = Integer.parseInt(request.getParameter("page"));
+				int perPageNum = Integer.parseInt(request.getParameter("perPageNum"));
+				cri.setPage(page);
+				cri.setPerPageNum(perPageNum);	
+			}catch(NumberFormatException e){
+				System.out.println("페이징 초기화");
+			}
 			
 			try {
-				boardList = boardService.selectBoardList();
+				List<BoardVO> boardList = boardService.selectBoardList(cri);
+				
+				PageMaker pageMaker = new PageMaker();
+				pageMaker.setCri(cri);
+				pageMaker.setTotalCount(boardList.get(0).getTotpage());
+
+				Map<String, Object> dataMap = new HashMap<String, Object>();
+				dataMap.put("boardList", boardList);
+				dataMap.put("pageMaker", pageMaker);
+				
+				request.setAttribute("dataMap", dataMap);
+				
+				System.out.println(pageMaker);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -55,7 +78,6 @@ public class BoardListServlet extends HttpServlet {
 				request.setAttribute("msg", "요청사항이 완료되었습니다.");
 			}
 			
-			request.setAttribute("boardList", boardList);			
 		}
 		
 		ViewResolver.view(request, response, url);

@@ -8,6 +8,7 @@
 		<typeAlias type="java.lang.Integer" alias="int"/>
 		<typeAlias type="com.exam.vo.comm.MemberVO" alias="member" />
 		<typeAlias type="com.exam.vo.board.BoardVO" alias="board" />
+		<typeAlias type="com.exam.controller.board.SearchCriteria" alias="cri" />
 	</typeAliases>
 	
 	<environments default="exam">

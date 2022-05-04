@@ -2,18 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper" "mybatis-3-mapper.dtd" >
 <mapper namespace="Board-Mapper">
   
-  	<select id="selectBoardList" resultType="board">
-  		SELECT
-  			BOARD_NO
-			,MEM_NO
-			,(SELECT NAME FROM MEMBER A WHERE A.MEM_NO = B.MEM_NO) AS NAME
-			,TITLE
-			,CONTENT
-			,TO_CHAR(REG_DT, 'YYYY-MM-DD') AS REG_DT
-			,MOD_DT
-			,DEL_YN 
-		FROM BOARD B
-			WHERE DEL_YN = 'N'
+  	<select id="selectBoardList" resultType="board" parameterType="cri">
+  		SELECT 
+		    ROWNUM
+		    ,COUNT(1) OVER() AS TOTPAGE
+		    ,C.*
+		FROM
+		    (SELECT
+		        BOARD_NO
+		        ,MEM_NO
+		        ,(SELECT NAME FROM MEMBER A WHERE A.MEM_NO = B.MEM_NO) AS NAME
+		        ,TITLE
+		        ,CONTENT
+		        ,TO_CHAR(REG_DT, 'YYYY-MM-DD') AS REG_DT
+		        ,MOD_DT
+		        ,DEL_YN 
+		    FROM BOARD B
+		        WHERE DEL_YN = 'N'
+		            ORDER BY REG_DT) C
+		ORDER BY ROWNUM DESC
   	</select>
   	
   	<insert id="insertBoard" parameterType="board">

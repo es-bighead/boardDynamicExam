@@ -33,10 +33,10 @@
 				      		<legend>내용</legend>
 				      			<div>
 				      				<c:if test="${empty board.picture}">
-				      					<img src="<%=request.getContextPath() %>/resources/images/noImage.png" style="width: 100%; height: 150px;" />
+				      					<img src="<%=request.getContextPath() %>/resources/images/noImage.png" style="width: 100%; height: 150px;" onerror="<%=request.getContextPath() %>/resources/images/noImage.png" />
 				      				</c:if>
 				      				<c:if test="${not empty board.picture}">
-				      					<img src="<%=request.getContextPath() %>/pictureGet.do?picture=${board.picture}" style="width: 100%; height: 150px;" />
+				      					<img src="<%=request.getContextPath() %>/pictureGet.do?picture=${board.picture}" style="width: 100%; height: 150px;" onerror="<%=request.getContextPath() %>/resources/images/noImage.png" />
 				      				</c:if>
 				      			</div>
 				      			<input type="hidden" name="mem_no" value="${loginUser.mem_no }">

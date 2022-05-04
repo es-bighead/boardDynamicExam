@@ -3,9 +3,11 @@ package com.exam.dao.board;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.exam.controller.board.SearchCriteria;
 import com.exam.vo.board.BoardVO;
 
 import mybatis.config.DbFactory;
@@ -31,9 +33,10 @@ public class BoardDaoImpl implements BoardDao{
 	}
 	
 	@Override
-	public List<BoardVO> selectBoardList() throws SQLException {
+	public List<BoardVO> selectBoardList(SearchCriteria cri) throws SQLException {
 		sqlSession = sqlFactory.openSession();
-		List<BoardVO> boardList = sqlSession.selectList("Board-Mapper.selectBoardList");
+		RowBounds rowBounds = new RowBounds(cri.getPageStartRowNum(), cri.getPerPageNum());
+		List<BoardVO> boardList = sqlSession.selectList("Board-Mapper.selectBoardList", cri, rowBounds);
 		sqlSession.close();
 		return boardList;
 	}

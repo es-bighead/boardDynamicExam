@@ -8,6 +8,9 @@
 	<title>게시판</title>
 </head>
 
+	<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+	<c:set var="boardList" value="${dataMap.boardList }" />
+
 	<div class="docSlider">
 		<section class="section1">
 	        <div class="inner">
@@ -28,7 +31,7 @@
 					</c:if>
 					<c:forEach var="items" items="${boardList }">
 					<tr>
-						<td>${items.board_no }</td>
+						<td>${items.rownum }</td>
 						<td>${items.name }</td>
 						<td><a href="/boardDetail.do?board_no=${items.board_no }">${items.title }</a></td>
 						<td>${items.reg_dt }</td>
@@ -36,6 +39,9 @@
 					</c:forEach>
 					</tbody>
 				</table>
+				
+				<%@ include file="/WEB-INF/views/include/include_pagination.jsp" %>
+				
 				<button class="btn-open-popup"></button> 
 			</div>
 			
