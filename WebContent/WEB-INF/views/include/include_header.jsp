@@ -26,6 +26,8 @@
         	<c:if test="${not empty loginUser}">
         		<li class="Header-dl"><a href="<%=request.getContextPath()%>/logout.do" class="dlink"><img src="<%=request.getContextPath() %>/resources/images/logo.png" alt="logout" width="24">로그아웃</a></li>
         		<li class="Header-profile"><a href="<%=request.getContextPath()%>/boardList.do"><img src="<%=request.getContextPath() %>/resources/images/logo.png" width="30" alt="board">게시판</a></li>
+        		        		<li class="Header-profile"><a href="<%=request.getContextPath()%>/jjy/board?command=list&pageIndex=1"><img src="<%=request.getContextPath() %>/resources/images/logo.png" width="30" alt="board">JJY 게시판</a></li>
+        		
             </c:if>
         </ul>
     </div>

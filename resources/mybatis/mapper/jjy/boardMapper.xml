@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jjy-Board-Mapper">
+	
+	<select id="selectJjyBoardList" parameterType="com.exam.vo.board.jjy.SearchVO" resultType="com.exam.vo.board.jjy.BoardVO">
+
+		SELECT
+			*
+		FROM (
+			SELECT
+			    ROW_NUMBER() OVER(ORDER BY B.create_date DESC) AS ROW_NUM,
+			    B.*
+			FROM (
+			    SELECT			        
+			    	A.BOARD_NO                                              AS board_no,
+			        A.MEM_NO                                                AS mem_no,
+			        (SELECT B.NAME FROM MEMBER B WHERE A.MEM_NO = B.MEM_NO) AS AUTHOR,
+			        A.TITLE                                                 AS title,
+			        A.CONTENT                                               AS content,
+			        A.CREATE_DATE                                           AS create_date
+			    FROM JJY_BOARD A
+			    WHERE A.DELETED_DATE IS NULL
+			    ORDER BY A.CREATE_DATE DESC) B
+			WHERE 1=1
+			<if test="searchTitle != null">
+			AND B.TITLE LIKE '%'||#{searchTitle}||'%'
+			</if>
+			<if test="searchAuthor != null">
+			AND B.AUTHOR LIKE '%'||#{searchAuthor}||'%'
+			</if>
+		) C
+		WHERE C.ROW_NUM BETWEEN #{pagingVO.startRow} AND #{pagingVO.endRow}
+		ORDER BY C.ROW_NUM ASC
+		
+	</select>
+	
+	<select id="countJjyBoardList" parameterType="com.exam.vo.board.jjy.SearchVO" resultType="java.lang.Integer">
+	
+		SELECT
+		    COUNT(BOARD_NO) AS totalBoard
+		FROM (
+		    SELECT
+		        A.*,
+		        (SELECT NAME FROM MEMBER B WHERE A.MEM_NO = B.MEM_NO) AS author 
+		    FROM JJY_BOARD A
+		    WHERE A.DELETED_DATE IS NULL) C
+		WHERE 1=1
+		<if test="searchAuthor != null">
+		AND C.AUTHOR LIKE '%' || #{searchAuthor} || '%'
+		</if>
+		<if test="searchTitle != null">
+		AND C.TITLE LIKE '%' || #{searchTitle} || '%'
+		</if>
+	
+	</select>
+	
+	<insert id="insertJjyBoard" parameterType="com.exam.vo.board.jjy.BoardVO">
+		
+		INSERT INTO 
+		JJY_BOARD(BOARD_NO, MEM_NO, TITLE, CONTENT, CREATE_DATE)
+		VALUES((SELECT NVL(MAX(BOARD_NO)+1, 0) FROM JJY_BOARD), #{mem_no}, #{title}, #{content}, SYSDATE)
+	
+	</insert>
+	
+	<select id="selectJjyBoardDetail" parameterType="java.lang.Integer" resultType="com.exam.vo.board.jjy.BoardVO">
+	
+		SELECT
+			A.BOARD_NO,
+			A.MEM_NO,
+			(SELECT B.NAME FROM MEMBER B WHERE A.MEM_NO = B.MEM_NO) AS AUTHOR,
+			A.TITLE,
+			A.CONTENT,
+			A.CREATE_DATE
+		FROM JJY_BOARD A
+		WHERE DELETED_DATE IS NULL
+		AND A.BOARD_NO = #{board_no}
+	
+	</select>
+	
+	<delete id="deleteJjyBoard" parameterType="java.lang.Integer">
+		UPDATE JJY_BOARD SET DELETED_DATE = SYSDATE WHERE BOARD_NO = #{board_no}
+	</delete>
+	
+	<update id="updateJjyBoard" parameterType="com.exam.vo.board.jjy.BoardVO">
+		UPDATE JJY_BOARD SET
+			title = #{title},
+			content = #{content},
+			modify_date = SYSDATE		
+		WHERE board_no = #{board_no}
+	</update>
+
+</mapper>

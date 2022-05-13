@@ -26,6 +26,8 @@
 	<mappers>
 		<mapper resource="mybatis/mapper/commMapper.xml" />
 		<mapper resource="mybatis/mapper/boardMapper.xml" />
+		
+		<mapper resource="mybatis/mapper/jjy/boardMapper.xml" />
 	</mappers>
 	
 </configuration>
